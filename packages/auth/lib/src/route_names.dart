@@ -1,0 +1,1 @@
+const kLoginRouteName = 'login';
