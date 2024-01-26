@@ -1,18 +1,12 @@
 part of 'bootstrap.dart';
 
-// application standard features
-final appFeatures = <FeatureInstaller>[
-  Auth(),
-];
-
 /// providers to inject in material app parent from all app features
 final rootProviders = <SingleChildWidget>[];
 
 /// bootstrap feature
-void _bootStrap(FeatureInstaller feature) {
-  feature
-    ..initServiceContainer(inject)
-    ..initRoutes(inject());
+Future<void> _bootStrap(FeatureInstaller feature) async {
+  await feature.initServiceContainer(inject);
+  feature.initRoutes(inject());
 
   if (feature.rootProviders.isNotEmpty) {
     rootProviders.addAll(feature.rootProviders);
@@ -22,11 +16,13 @@ void _bootStrap(FeatureInstaller feature) {
 /// initialize service container and application features
 Future<void> bootstrap() async {
   // register app router
-  inject.registerLazySingleton(AppRouter.new);
+  inject
+    ..registerLazySingleton(AppRouter.new)
+    ..registerLazySingleton(AuthProvider.new);
 
   // bootstrap all standard features
   for (final feature in appFeatures) {
-    _bootStrap(feature);
+    await _bootStrap(feature);
   }
 
   // splash / loading screen redirect logic
@@ -45,7 +41,7 @@ Future<void> bootstrap() async {
   );
 
   // application customizations
-  _bootStrap(Customs());
+  await _bootStrap(Customs());
 
   inject<AppRouter>().build();
 }

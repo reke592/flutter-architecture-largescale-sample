@@ -1,5 +1,5 @@
-name: auth
-description: auth package
+name: dashboard
+description: dashboard screen after successful login
 version: 0.0.1
 homepage:
 
@@ -10,10 +10,10 @@ environment:
   flutter: ">=1.17.0"
 
 dependencies:
+  auth:
+    path: ../auth
   commons:
     path: ../commons
-  dashboard:
-    path: ../dashboard
   flutter:
     sdk: flutter
 
