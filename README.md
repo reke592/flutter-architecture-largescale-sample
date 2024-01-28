@@ -1,16 +1,13 @@
 # largescale
 
-test architecture for large scale project
+Test architecture for large scale project.
+
+## Target
+Design a project architecture that can support the following:
+- Clean architecture
+- Modular development and testing
+- Feature customization
 
 ## Getting Started
-
-This project is a starting point for a Flutter application.
-
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+- Run `pub_get.bat` to fetch all project dependencies. This will execute `flutter pub get` in all projects inside the `packages` directory and, finally, in the main project.
+- For selective dependency fetching, *eg.* `pub_get.bat auth`. This command will run `flutter pub get` only in the `./packages/auth` directory and the main project.
