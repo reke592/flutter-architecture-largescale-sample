@@ -16,9 +16,7 @@ Future<void> _bootStrap(FeatureInstaller feature) async {
 /// initialize service container and application features
 Future<void> bootstrap() async {
   // register app router
-  inject
-    ..registerLazySingleton(AppRouter.new)
-    ..registerLazySingleton(AuthProvider.new);
+  inject.registerLazySingleton(AppRouter.new);
 
   // bootstrap all standard features
   for (final feature in appFeatures) {

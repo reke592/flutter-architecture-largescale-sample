@@ -8,4 +8,4 @@ typedef DataMap = Map<String, dynamic>;
 typedef ResultFuture<T> = Future<Either<Failure, T>>;
 
 /// common type definition for future void result using dartz [Either]
-typedef ResultVoid<T> = ResultFuture<void>;
+typedef ResultVoid = ResultFuture<void>;

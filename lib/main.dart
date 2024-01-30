@@ -4,6 +4,7 @@ import 'package:largescale/src/core/bootstrap.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  Bloc.observer = AppBlocObserver();
   await bootstrap();
   runApp(const MyApp());
 }
@@ -15,10 +16,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MultiProvider(
-      providers: [
-        ChangeNotifierProvider(create: (_) => inject<AuthProvider>()),
-        ...rootProviders,
-      ],
+      providers: rootProviders,
       child: MaterialApp.router(
         title: 'Flutter Demo',
         theme: ThemeData(

@@ -28,6 +28,7 @@ dev_dependencies:
   very_good_analysis: ^3.1.0
 
 dependency_overrides: 
+  # copy ./packages/custom to any folder and update this path to apply client specific customizations
   customs:
     path: ./packages/customs
 
