@@ -3,10 +3,10 @@ library auth;
 import 'package:auth/auth.dart';
 import 'package:auth/src/presentation/views/login_screen.dart';
 import 'package:commons/commons.dart';
+export 'src/core/constants.dart';
 export 'src/providers/auth_provider.dart';
-export 'src/route_names.dart';
 
-/// A Calculator.
+/// Auth feature installer
 class Auth extends FeatureInstaller {
   Auth() : super(featureName: 'Auth');
 

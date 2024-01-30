@@ -21,8 +21,8 @@ class _DashboardScreenState extends State<DashboardScreen> {
                 onTap: () {
                   context.pushReplacementNamed(kLoginRouteName);
                 },
-                child: Row(
-                  children: const [
+                child: const Row(
+                  children: [
                     Text('Logout'),
                     Icon(
                       Icons.logout,
@@ -30,7 +30,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
                     ),
                   ],
                 ),
-              )
+              ),
             ],
           ),
         ],

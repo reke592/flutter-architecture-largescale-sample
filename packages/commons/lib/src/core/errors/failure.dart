@@ -1,5 +1,9 @@
 import 'package:equatable/equatable.dart';
 
+part 'api_failure.dart';
+part 'cache_failure.dart';
+part 'unknown_failure.dart';
+
 /// {@template failure}
 /// common failure base class
 /// {@endtemplate}
