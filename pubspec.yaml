@@ -10,14 +10,14 @@ environment:
 
 dependencies:
   auth:
-    path: ./packages/auth
+    path: packages/auth
   commons:
-    path: ./packages/commons
+    path: packages/commons
   cupertino_icons: ^1.0.2
   customs:
-    path: ./packages/customs
+    path: packages/customs
   dashboard:
-    path: ./packages/dashboard
+    path: packages/dashboard
   flutter:
     sdk: flutter
 
