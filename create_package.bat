@@ -6,6 +6,10 @@ setlocal
 set packageName=
 set /P packageName="package name (lowercase no spaces): "
 if "%packageName%" == "" goto ask_package_name
+if exist "packages\%packageName%" (
+    echo packages\%packageName% already exist.
+    goto ask_package_name
+)
 
 set packageDescription=
 set /P packageDescription="description: "
