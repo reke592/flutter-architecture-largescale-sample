@@ -2,7 +2,7 @@ import 'package:commons/commons.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 void main() {
-  test('adds one to input values', () {
+  test('extends [FeatureInstaller]', () {
     // update the actual value with the [FeatureInstaller] implementation instance in this package.
     final actual = null;
     expect(actual, isA<FeatureInstaller>());
