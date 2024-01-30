@@ -3,14 +3,17 @@ library auth;
 import 'package:auth/auth.dart';
 import 'package:auth/src/presentation/views/login_screen.dart';
 import 'package:commons/commons.dart';
-export 'src/route_names.dart';
+export 'src/core/constants.dart';
+export 'src/providers/auth_provider.dart';
 
-/// A Calculator.
+/// Auth feature installer
 class Auth extends FeatureInstaller {
   Auth() : super(featureName: 'Auth');
 
   @override
-  Future<void> initServiceContainer(GetIt inject) async {}
+  Future<void> initServiceContainer(GetIt inject) async {
+    inject.registerLazySingleton(AuthProvider.new);
+  }
 
   @override
   void initRoutes(AppRouter router) {
@@ -22,5 +25,9 @@ class Auth extends FeatureInstaller {
   }
 
   @override
-  List<SingleChildWidget> get rootProviders => [];
+  List<SingleChildWidget> get rootProviders => [
+        ChangeNotifierProvider(
+          create: (_) => inject<AuthProvider>(),
+        ),
+      ];
 }

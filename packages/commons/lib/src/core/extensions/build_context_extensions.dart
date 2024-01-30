@@ -3,5 +3,5 @@ import 'package:flutter/widgets.dart';
 
 /// common extensions in build context
 extension BuildContextExtension on BuildContext {
-  GoRouter get router => inject<AppRouter>().instance!;
+  AppRouter get router => inject<AppRouter>();
 }

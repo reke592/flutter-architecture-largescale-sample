@@ -3,8 +3,14 @@ library customs;
 // import 'package:auth/auth.dart';
 import 'package:commons/commons.dart';
 // import 'package:flutter/material.dart';
+export 'src/core/constants.dart';
 
+/// {@template Customs}
+/// template package to apply client specific customizations
+/// {@endtemplate}
 class Customs extends FeatureInstaller {
+
+  /// {@macro Customs}
   Customs() : super(featureName: 'Customs');
 
   @override

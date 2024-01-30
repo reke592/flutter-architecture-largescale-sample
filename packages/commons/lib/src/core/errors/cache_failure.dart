@@ -1,4 +1,4 @@
-import 'package:commons/src/core/errors/failure.dart';
+part of 'failure.dart';
 
 /// {@template CacheFailure}
 /// local cache failure

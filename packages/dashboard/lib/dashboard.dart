@@ -1,9 +1,9 @@
 library dashboard;
 
 import 'package:commons/commons.dart';
+import 'package:dashboard/src/core/constants.dart';
 import 'package:dashboard/src/presentation/views/dashboard_screen.dart';
-import 'package:dashboard/src/route_names.dart';
-export 'src/route_names.dart';
+export 'src/core/constants.dart';
 
 /// A Dashboard.
 class Dashboard extends FeatureInstaller {

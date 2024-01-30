@@ -21,7 +21,7 @@ class LoginScreen extends StatelessWidget {
                 context.pushReplacementNamed(kDashboardRouteName);
               },
               child: const Text('Sign-in'),
-            )
+            ),
           ],
         ),
       ),
