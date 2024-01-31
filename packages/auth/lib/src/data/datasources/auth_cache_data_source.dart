@@ -6,4 +6,7 @@ abstract class AuthCacheDataSource {
 
   /// load user data from local storage
   Future<User?> load();
+
+  /// delete user data in local storage
+  Future<void> clear();
 }

@@ -20,4 +20,11 @@ class AuthCacheDataSourceImpl extends AuthCacheDataSource {
   Future<void> save(User data) async {
     await _storage.setString(kAuthUserCacheName, data.asJson());
   }
+
+  @override
+  Future<void> clear() async {
+    if (_storage.containsKey(kAuthUserCacheName)) {
+      await _storage.remove(kAuthUserCacheName);
+    }
+  }
 }

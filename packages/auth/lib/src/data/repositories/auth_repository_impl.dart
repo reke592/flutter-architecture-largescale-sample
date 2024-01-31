@@ -43,6 +43,7 @@ class AuthRepositoryImpl extends AuthRepository {
   ResultVoid logout(User param) async {
     try {
       final result = await _remoteDataSource.logout(param);
+      await _cacheDataSource.clear();
       return Right(result);
     } on Failure catch (_) {
       rethrow;

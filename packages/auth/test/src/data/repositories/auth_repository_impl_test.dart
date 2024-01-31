@@ -90,12 +90,15 @@ void main() {
 
   group('AuthRepositoryImpl.logout', () {
     test(
-      'should call [AuthDataSource.logout]',
+      'should call [AuthDataSource.logout] and clear the cache data',
       () async {
         // arrange
         when(
           () => mockRemoteDataSource.logout(tUser),
-        ).thenAnswer((invocation) async => Future.value());
+        ).thenAnswer((_) => Future.value());
+        when(
+          () => mockAuthCacheDataSource.clear(),
+        ).thenAnswer((_) => Future.value());
 
         // act
         final result = await authRepo.logout(tUser);
@@ -105,6 +108,10 @@ void main() {
           () => mockRemoteDataSource.logout(tUser),
         ).called(1);
         verifyNoMoreInteractions(mockRemoteDataSource);
+        verify(
+          () => mockAuthCacheDataSource.clear(),
+        ).called(1);
+        verifyNoMoreInteractions(mockAuthCacheDataSource);
         expect(result, equals(const Right<Failure, void>(null)));
       },
     );
