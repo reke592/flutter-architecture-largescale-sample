@@ -1,12 +1,12 @@
 import 'package:commons/commons.dart';
 export 'package:provider/single_child_widget.dart';
 
-/// {@template CustomRegistrant}
+/// {@template ModuleInstaller}
 /// Application customization registrant interface
 /// {@endtemplate}
-abstract class FeatureInstaller {
-  /// {@macro CustomRegistrant}
-  FeatureInstaller({required this.featureName});
+abstract class ModuleInstaller {
+  /// {@macro ModuleInstaller}
+  ModuleInstaller({required this.featureName});
 
   /// name of client who requested this customizations
   final String featureName;
@@ -19,4 +19,7 @@ abstract class FeatureInstaller {
 
   /// providers to inject in material app parent
   List<SingleChildWidget> get rootProviders;
+
+  /// global message bus PubSub
+  void pubSub(EventBus bus);
 }

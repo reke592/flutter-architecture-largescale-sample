@@ -5,6 +5,6 @@ import 'package:flutter_test/flutter_test.dart';
 void main() {
   test('extends [FeatureInstaller]', () {
     final actual = Customs();
-    expect(actual, isA<FeatureInstaller>());
+    expect(actual, isA<ModuleInstaller>());
   });
 }

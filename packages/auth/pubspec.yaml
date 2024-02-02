@@ -12,8 +12,6 @@ environment:
 dependencies:
   commons:
     path: ../commons
-  dashboard:
-    path: ../dashboard
   flutter:
     sdk: flutter
 

@@ -7,7 +7,7 @@ export 'src/core/constants.dart';
 export 'src/providers/auth_provider.dart';
 
 /// Auth feature installer
-class Auth extends FeatureInstaller {
+class Auth extends ModuleInstaller {
   Auth() : super(featureName: 'Auth');
 
   @override
@@ -30,4 +30,9 @@ class Auth extends FeatureInstaller {
           create: (_) => inject<AuthProvider>(),
         ),
       ];
+
+  @override
+  void pubSub(EventBus bus) {
+    // TODO: implement pubSub
+  }
 }

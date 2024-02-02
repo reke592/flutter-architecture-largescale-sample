@@ -1,45 +1,63 @@
 part of 'bootstrap.dart';
 
-/// providers to inject in material app parent from all app features
+/// providers to inject in material app parent from all app modules
 final rootProviders = <SingleChildWidget>[];
 
-/// bootstrap feature
-Future<void> _bootStrap(FeatureInstaller feature) async {
-  await feature.initServiceContainer(inject);
-  feature.initRoutes(inject());
-
-  if (feature.rootProviders.isNotEmpty) {
-    rootProviders.addAll(feature.rootProviders);
+/// bootstrap module
+Future<void> _bootStrap(ModuleInstaller module) async {
+  await module.initServiceContainer(inject);
+  module
+    ..initRoutes(inject())
+    ..pubSub(inject());
+  if (module.rootProviders.isNotEmpty) {
+    rootProviders.addAll(module.rootProviders);
   }
 }
 
-/// initialize service container and application features
+/// initialize service container and application modules
 Future<void> bootstrap() async {
-  // register app router
-  inject.registerLazySingleton(AppRouter.new);
+  // common services
+  inject
+    ..registerLazySingleton(AppRouter.new)
+    ..registerLazySingleton(EventBus.new)
+    ..registerFactory(() => AppBarNavBloc(eventBus: inject()));
 
-  // bootstrap all standard features
-  for (final feature in appFeatures) {
-    await _bootStrap(feature);
+  // all standard modules
+  for (final module in appModules) {
+    await _bootStrap(module);
   }
 
-  // splash / loading screen redirect logic
-  inject<AppRouter>().createRoute(
-    uniqueName: '/',
-    path: '/',
-    redirect: (context, state) {
-      if (!context.read<AuthProvider>().isAuth) {
-        Future.microtask(
-          () => context.router.pushReplacementNamed(kLoginRouteName),
-        );
-      }
-      return null;
-    },
-    builder: (context, state) => const LoadingScreen(),
-  );
-
-  // application customizations
+  // customizations
   await _bootStrap(Customs());
 
-  inject<AppRouter>().build();
+  // router
+  inject<AppRouter>()
+    ..createRoute(
+      uniqueName: 'redirect',
+      path: '/redirect',
+      redirect: (context, state) {
+        if (!context.read<AuthProvider>().isAuth) {
+          Future.delayed(
+            const Duration(seconds: 1),
+            () => context.router.pushReplacementNamed(kLoginRouteName),
+          );
+        } else {
+          Future.delayed(
+            const Duration(seconds: 1),
+            () => context.router.pushReplacementNamed('/'),
+          );
+        }
+        return null;
+      },
+      builder: (context, state) => const LoadingScreen(),
+    )
+    ..createRoute(
+      uniqueName: '/',
+      path: '/',
+      builder: (context, state) => BlocProvider(
+        create: (_) => inject<AppBarNavBloc>(),
+        child: const LandingScreen(),
+      ),
+    )
+    ..build(initialRoute: '/redirect');
 }

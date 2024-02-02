@@ -17,4 +17,16 @@ class AppBlocObserver extends BlocObserver {
     log('$bloc closed');
     super.onClose(bloc);
   }
+
+  @override
+  void onEvent(Bloc bloc, Object? event) {
+    log('$bloc $event');
+    super.onEvent(bloc, event);
+  }
+
+  @override
+  void onChange(BlocBase bloc, Change change) {
+    log('$bloc ${change.nextState}');
+    super.onChange(bloc, change);
+  }
 }

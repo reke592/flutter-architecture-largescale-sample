@@ -1,5 +1,4 @@
 import 'package:commons/commons.dart';
-import 'package:dashboard/dashboard.dart';
 import 'package:flutter/material.dart';
 
 class LoginScreen extends StatelessWidget {
@@ -18,7 +17,7 @@ class LoginScreen extends StatelessWidget {
             ),
             TextButton(
               onPressed: () {
-                context.pushReplacementNamed(kDashboardRouteName);
+                context.pushReplacementNamed('/');
               },
               child: const Text('Sign-in'),
             ),
