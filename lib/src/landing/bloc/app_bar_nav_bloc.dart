@@ -17,7 +17,7 @@ class AppBarNavBloc extends Bloc<AppBarNavEvent, AppBarNavState> {
   }
 
   final EventBus _pub;
-  late final StreamSubscription<PubSubEvent> _sub;
+  late final StreamSubscription<EventBusData> _sub;
 
   @override
   Future<void> close() async {
@@ -25,7 +25,7 @@ class AppBarNavBloc extends Bloc<AppBarNavEvent, AppBarNavState> {
     return super.close();
   }
 
-  void _onPubSubEvent(PubSubEvent data) {
+  void _onPubSubEvent(EventBusData data) {
     if (data.event is RegisterLandingAppBarModuleNav) {
       final event = data.event as RegisterLandingAppBarModuleNav;
       add(

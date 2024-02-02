@@ -2,8 +2,8 @@ import 'dart:developer';
 
 import 'package:rxdart/rxdart.dart';
 
-class PubSubEvent {
-  PubSubEvent({
+class EventBusData {
+  EventBusData({
     required this.sender,
     required this.event,
   });
@@ -14,16 +14,16 @@ class PubSubEvent {
 
 /// common PubSub event bus
 class EventBus {
-  final _eventStream = PublishSubject<PubSubEvent>();
+  final _eventStream = PublishSubject<EventBusData>();
 
   /// broadcast stream to listen
-  Stream<PubSubEvent> getBroadcast() => _eventStream.asBroadcastStream();
+  Stream<EventBusData> getBroadcast() => _eventStream.asBroadcastStream();
 
   /// publish event to broadcast
   void add(Object sender, Object event) {
     log('EventBus: sender: ${sender.runtimeType}, event: $event');
     _eventStream.add(
-      PubSubEvent(
+      EventBusData(
         event: event,
         sender: sender,
       ),
