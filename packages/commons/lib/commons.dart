@@ -12,6 +12,7 @@ export 'src/app/observers/app_bloc_observer.dart';
 export 'src/app/providers/tab_navigator.dart';
 export 'src/app/views/views.dart';
 export 'src/app/widgets/widgets.dart';
+export 'src/core/constants.dart';
 export 'src/core/errors/failure.dart';
 export 'src/core/event_bus.dart';
 export 'src/core/extensions/build_context_extensions.dart';

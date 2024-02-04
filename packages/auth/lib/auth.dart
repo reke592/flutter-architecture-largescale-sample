@@ -20,6 +20,12 @@ class Auth extends ModuleInstaller {
     router.createRoute(
       uniqueName: kLoginRouteName,
       path: '/login',
+      redirect: (context, state) {
+        if (context.read<AuthProvider>().isAuth) {
+          return context.router.getPathOfNamed(kHomeRouteName);
+        }
+        return null;
+      },
       builder: (context, state) => const LoginScreen(),
     );
   }

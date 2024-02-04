@@ -15,6 +15,8 @@ abstract class ModuleInstaller {
   Future<void> initServiceContainer(GetIt inject);
 
   /// feature routes registration
+  ///
+  /// use if part the module feature requires a direct link access
   void initRoutes(AppRouter router);
 
   /// providers to inject in material app parent

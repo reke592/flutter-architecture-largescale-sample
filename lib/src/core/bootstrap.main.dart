@@ -33,31 +33,22 @@ Future<void> bootstrap() async {
   // router
   inject<AppRouter>()
     ..createRoute(
-      uniqueName: 'redirect',
-      path: '/redirect',
+      uniqueName: kRedirectRouteName,
+      path: '/',
       redirect: (context, state) {
-        if (!context.read<AuthProvider>().isAuth) {
-          Future.delayed(
-            const Duration(seconds: 1),
-            () => context.router.pushReplacementNamed(kLoginRouteName),
-          );
-        } else {
-          Future.delayed(
-            const Duration(seconds: 1),
-            () => context.router.pushReplacementNamed('/'),
-          );
-        }
-        return null;
+        return context.read<AuthProvider>().isAuth
+            ? context.router.getPathOfNamed(kHomeRouteName)
+            : context.router.getPathOfNamed(kLoginRouteName);
       },
       builder: (context, state) => const LoadingScreen(),
     )
     ..createRoute(
-      uniqueName: '/',
-      path: '/',
+      uniqueName: kHomeRouteName,
+      path: '/_',
       builder: (context, state) => BlocProvider(
         create: (_) => inject<AppBarNavBloc>(),
         child: const LandingScreen(),
       ),
     )
-    ..build(initialRoute: '/redirect');
+    ..build();
 }

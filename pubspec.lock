@@ -402,6 +402,27 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "0.6.1"
+  user_account:
+    dependency: "direct main"
+    description:
+      path: "packages/user_account"
+      relative: true
+    source: path
+    version: "0.0.1"
+  user_home:
+    dependency: "direct main"
+    description:
+      path: "packages/user_home"
+      relative: true
+    source: path
+    version: "0.0.1"
+  user_notifications:
+    dependency: "direct main"
+    description:
+      path: "packages/user_notifications"
+      relative: true
+    source: path
+    version: "0.0.1"
   vector_math:
     dependency: transitive
     description:
@@ -443,5 +464,5 @@ packages:
     source: hosted
     version: "1.0.4"
 sdks:
-  dart: ">=3.2.0-194.0.dev <4.0.0"
+  dart: ">=3.2.3 <4.0.0"
   flutter: ">=3.10.0"

@@ -135,4 +135,8 @@ class AppRouter {
       extra: extra,
     );
   }
+
+  /// returns [RouteBase] path of a named route
+  String getPathOfNamed(String routeName) =>
+      (_routeRegistry[routeName]! as GoRoute).path;
 }

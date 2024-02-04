@@ -30,18 +30,19 @@ class _LandingScreenState extends State<LandingScreen>
         if (state is AppBarNavRegistered) {
           setState(() {
             final curIndex = _tabController?.index;
+            final tab = Tab(
+              icon: state.icon,
+              child: state.label,
+            );
+            final view = PersistentWidget(child: state.content);
             _tabController?.dispose();
-            _tabs.insert(
-              state.index,
-              Tab(
-                icon: state.icon,
-                child: state.label,
-              ),
-            );
-            _views.insert(
-              state.index,
-              PersistentWidget(child: state.content),
-            );
+            if (state.index > 0) {
+              _tabs.insert(state.index, tab);
+              _views.insert(state.index, view);
+            } else {
+              _tabs.add(tab);
+              _views.add(view);
+            }
             _tabController = TabController(
               initialIndex: curIndex ?? 0,
               length: _tabs.length,
@@ -52,16 +53,7 @@ class _LandingScreenState extends State<LandingScreen>
       },
       child: Scaffold(
         appBar: AppBar(
-          centerTitle: true,
-          title: TabBar(
-            tabAlignment: TabAlignment.center,
-            isScrollable: true,
-            controller: _tabController,
-            tabs: _tabs,
-            onTap: (value) {
-              _tabController?.animateTo(value);
-            },
-          ),
+          title: const Text('Flutter Practice'),
           actions: [
             PopupMenuButton<void>(
               itemBuilder: (context) => [
@@ -73,16 +65,33 @@ class _LandingScreenState extends State<LandingScreen>
                     ],
                   ),
                   onTap: () {
-                    context.router.pushNamed(kLoginRouteName);
+                    context.read<AuthProvider>().user = null;
+                    context.router.goNamed(kLoginRouteName);
                   },
                 ),
               ],
             ),
           ],
         ),
-        body: TabBarView(
-          controller: _tabController,
-          children: [..._views],
+        body: Column(
+          children: [
+            TabBar(
+              isScrollable: true,
+              tabAlignment: TabAlignment.center,
+              controller: _tabController,
+              tabs: _tabs,
+              onTap: (value) {
+                _tabController?.animateTo(value);
+              },
+            ),
+            Expanded(
+              child: TabBarView(
+                key: ValueKey(_tabs.length),
+                controller: _tabController,
+                children: _views,
+              ),
+            ),
+          ],
         ),
       ),
     );

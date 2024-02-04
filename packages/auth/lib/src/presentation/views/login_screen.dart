@@ -1,3 +1,5 @@
+import 'package:auth/auth.dart';
+import 'package:auth/src/domain/entities/user.dart';
 import 'package:commons/commons.dart';
 import 'package:flutter/material.dart';
 
@@ -17,7 +19,11 @@ class LoginScreen extends StatelessWidget {
             ),
             TextButton(
               onPressed: () {
-                context.pushReplacementNamed('/');
+                context.read<AuthProvider>().user = const User(
+                  id: '1',
+                  username: 'test',
+                );
+                context.goNamed(kHomeRouteName);
               },
               child: const Text('Sign-in'),
             ),

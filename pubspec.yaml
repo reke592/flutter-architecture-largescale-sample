@@ -18,6 +18,12 @@ dependencies:
     path: packages/customs
   flutter:
     sdk: flutter
+  user_account:
+    path: packages/user_account
+  user_home:
+    path: packages/user_home
+  user_notifications:
+    path: packages/user_notifications
 
 dev_dependencies:
   flutter_lints: ^2.0.0
