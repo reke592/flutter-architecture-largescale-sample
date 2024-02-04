@@ -2,9 +2,9 @@ import 'package:commons/commons.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 void main() {
-  test('extends [FeatureInstaller]', () {
-    // update the actual value with the [FeatureInstaller] implementation instance in this package.
+  test('extends [ModuleInstaller]', () {
+    // update the actual value with the [ModuleInstaller] implementation.
     final actual = null;
-    expect(actual, isA<FeatureInstaller>());
+    expect(actual, isA<ModuleInstaller>());
   });
 }

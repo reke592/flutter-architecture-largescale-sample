@@ -33,10 +33,10 @@ echo // constant declarations for this package > "lib\src\core\constants.dart"
 echo library %packageName%; > "lib\%packageName%.dart"
 
 REM default exports
-echo export "src/core/constants.dart"; >> "lib\%packageName%.dart"
+echo export 'src/core/constants.dart'; >> "lib\%packageName%.dart"
 
 REM apply main code analysis options
-echo ../../analysis_options.yaml > "analysis_options.yaml"
+type ..\..\templates\analysis_options.template > "analysis_options.yaml"
 
 REM add default feature installer test file
 type ..\..\templates\feature_installer_test_file.template > "test\%packageName%_test.dart"
@@ -45,7 +45,11 @@ popd
 REM only include the new package if not exist in main pubspec
 findstr /C:"%packageName%" "pubspec.yaml" > nul
 if errorlevel 1 (
-    call flutter pub add %packageName% --path="./packages/%packageName%"
+    set includeInMain=
+    set /P includeInMain="Would you like to include this package in main project now [y/n]: "
+    if "%includeInMain%"=="y" (
+        call flutter pub add %packageName% --path="./packages/%packageName%"
+    )
 )
 
 echo done.
