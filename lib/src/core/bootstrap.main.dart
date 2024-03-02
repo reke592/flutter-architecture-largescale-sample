@@ -3,6 +3,8 @@ part of 'bootstrap.dart';
 /// providers to inject in material app parent from all app modules
 final rootProviders = <SingleChildWidget>[];
 
+RouterConfig<Object>? routerConfig() => inject<AppRouter>().instance;
+
 /// bootstrap module
 Future<void> _bootStrap(ModuleInstaller module) async {
   await module.initServiceContainer(inject);

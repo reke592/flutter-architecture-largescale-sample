@@ -1,11 +1,14 @@
-import 'package:commons/commons.dart';
+import 'package:commons/commons.dart' deferred as commons
+    show MultiProvider, Bloc, AppBlocObserver;
 import 'package:flutter/material.dart';
-import 'package:largescale/src/core/bootstrap.dart';
+import 'package:largescale/src/core/bootstrap.dart' deferred as boot;
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  Bloc.observer = AppBlocObserver();
-  await bootstrap();
+  await commons.loadLibrary();
+  await boot.loadLibrary();
+  commons.Bloc.observer = commons.AppBlocObserver();
+  await boot.bootstrap();
   runApp(const MyApp());
 }
 
@@ -15,14 +18,14 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return MultiProvider(
-      providers: rootProviders,
+    return commons.MultiProvider(
+      providers: boot.rootProviders,
       child: MaterialApp.router(
         title: 'Flutter Demo',
         theme: ThemeData(
           primarySwatch: Colors.blue,
         ),
-        routerConfig: inject<AppRouter>().instance,
+        routerConfig: boot.routerConfig(),
       ),
     );
   }
